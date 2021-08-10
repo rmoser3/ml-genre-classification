@@ -10,7 +10,7 @@ SAMPLE_RATE = 22050
 DURATION = 30 # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * DURATION
 
-def save_mfcc(dataset_path, json_path, n_mfcc=13, n_fft=2048, hop_length=512, num_segments=5):
+def save_mfcc(dataset_path, json_path, n_mfcc=13, n_fft=1024, hop_length=1024, num_segments=10):
 
     # dictionary to store data
     data = {

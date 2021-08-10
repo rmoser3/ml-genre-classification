@@ -78,6 +78,17 @@ def build_model(input_shape):
 
     return model
 
+def predict(model, X, y):
+
+    X = X[np.newaxis, ...]
+
+    # prediction = [ [0.1, 0.2, ...] ]
+    prediction = model.predict(X) # X -> [1, 130, 13, 1]
+
+    # extract index with max value
+    predicted_index = np.argmax(prediction, axis=1) # [4]
+    print("Expected index: {}, Predicted index: {}".format(y, predicted_index))
+
 if __name__ == "__main__":
     # create train, validation and test sets                                                   # .25 of the train set used for test set
     X_train, X_validation, X_test, y_train, y_validation, y_test = prepare_datasets(0.25, 0.2) # 0.2 of data for validation set
@@ -97,10 +108,14 @@ if __name__ == "__main__":
     model.fit(X_train,
               y_train,
               validation_data=(X_validation, y_validation),
-              batch_size=64,
-              epochs=50)
+              batch_size=32,
+              epochs=30)
 
     # evaluate the CNN on the testset
     test_error, test_accuracy = model.evaluate(X_test, y_test, verbose=1)
     print("Accuracy on test set is: {}".format(test_accuracy))
+
     # make predictions on a sample
+    X = X_test[100]
+    y = y_test[100]
+    predict(model, X, y)
