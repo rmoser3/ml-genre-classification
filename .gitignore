@@ -2,3 +2,5 @@
 *.pyc
 data.json
 record.rtf
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/vcs.xml
