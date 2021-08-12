@@ -4,3 +4,7 @@ data.json
 record.rtf
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/vcs.xml
+.DS_Store
+*.pb
+*.index
+*.data-00000-of-00001

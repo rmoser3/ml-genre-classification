@@ -11,7 +11,7 @@ DURATION = 30 # measured in seconds
 N_MFCC = 13
 N_FFT = 1024
 HOP_LENGTH = 512
-NUM_SEGMENTS = 20
+NUM_SEGMENTS = 15
 
 SAMPLES_PER_TRACK = SAMPLE_RATE * DURATION
 NUM_SAMPLES_PER_SEGMENT = int(SAMPLES_PER_TRACK / NUM_SEGMENTS)
@@ -72,8 +72,6 @@ def save_mfcc(dataset_path, json_path, n_mfcc, n_fft, hop_length, num_segments):
                         data["mfcc"].append(mfcc.tolist())
                         data["labels"].append(i-1)
                         print("{}, segment:{}".format(file_path, s+1))
-    print("MFCC: "+str(len(data["mfcc"])))
-    print("Labels: "+str(len(data["labels"])))
     with open(json_path, "w") as fp:
         json.dump(data, fp, indent=4)
 
@@ -81,4 +79,4 @@ def run():
     save_mfcc(DATASET_PATH, JSON_PATH, n_mfcc=N_MFCC, n_fft=N_FFT, hop_length=HOP_LENGTH, num_segments=NUM_SEGMENTS)
 
 if __name__ == "__main__":
-    save_mfcc(DATASET_PATH, JSON_PATH, n_mfcc=N_MFCC, n_fft=N_FFT, hop_length=HOP_LENGTH, num_segments=NUM_SEGMENTS)
+    run()
