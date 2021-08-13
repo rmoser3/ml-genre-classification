@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 """
 This classifier is a DNN, not a CNN. It is not as accurate as the CNN.
-It is currently kept for reference and may be deleted when necessary.
+It is currently kept for reference and may be deleted when necessary. 
 """
 
 DATASET_PATH = "data.json"

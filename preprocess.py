@@ -2,6 +2,8 @@ import os
 import librosa
 import math
 import json
+import sys
+sys.path.append("/System/Library/Frameworks/Python.framework/Versions/2.7/lib")
 
 DATASET_PATH = "/Users/ryan.moser/Downloads/genres"
 JSON_PATH = "data.json"
