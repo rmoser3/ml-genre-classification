@@ -2,8 +2,6 @@ import os
 import librosa
 import math
 import json
-import sys
-sys.path.append("/System/Library/Frameworks/Python.framework/Versions/2.7/lib")
 
 DATASET_PATH = "/Users/ryan.moser/Downloads/genres"
 JSON_PATH = "data.json"
@@ -57,7 +55,7 @@ def save_mfcc(dataset_path, json_path, n_mfcc, n_fft, hop_length, num_segments):
                 signal, sr = librosa.load(file_path, sr=SAMPLE_RATE)
 
                 # process segments extracting mfcc and storing data
-                for s in range(NUM_SEGMENTS):
+                for s in range(num_segments):
                     start_sample = NUM_SAMPLES_PER_SEGMENT * s # s = 0 -> 0
                     finish_sample = start_sample + NUM_SAMPLES_PER_SEGMENT # s = 0 -> num_samples_per_second
 

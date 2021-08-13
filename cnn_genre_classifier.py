@@ -7,7 +7,7 @@ import models
 import random
 
 DATA_PATH = "data.json"
-
+MODEL_NAME = "somename"
 LEARNING_RATE = 0.00015
 BATCH_SIZE = 32
 EPOCHS = 50
@@ -31,25 +31,6 @@ def load_data(data_path):
     X = np.array(data["mfcc"]) # Shape of X = [num_tracks * num_segments, expected_num_mfcc_vectors_per_segment, n_mfcc]
     y = np.array(data["labels"]) # Shape of Y = [num_tracks * num_segments]
     return X, y
-
-def load_data_w_files(data_path):
-    """
-        Loads training dataset from json file
-
-        :param data_path(str): Path to json file containing data_path
-        :return X (ndarray): Inputs
-        :return y (ndarray): Targets
-        :return f (ndarray): Files
-    """
-
-
-    with open(data_path, "r") as fp:
-        data = json.load(fp)
-
-    f = np.array(data["files"])
-    X = np.array(data["mfcc"]) # Shape of X = [num_tracks * num_segments, expected_num_mfcc_vectors_per_segment, n_mfcc]
-    y = np.array(data["labels"]) # Shape of Y = [num_tracks * num_segments]
-    return f, X, y
 
 def plot_history(history):
     """Plots accuracy/loss for training/validation set as a function of the epochs
@@ -148,6 +129,7 @@ def load_model():
 def train_model():
     """
     Train a new model and save it
+    TODO: Get probability distribution on test set to pass to score to vote function
     """
     # create train, validation and test sets                                                   # 0.25 of the train set used for test set
     X_train, X_validation, X_test, y_train, y_validation, y_test = prepare_datasets(0.25, 0.2) # 0.2 of data for validation set
@@ -183,6 +165,6 @@ def train_model():
     y = y_test[100]
     predict(model, X, y)
 
-    model.save('trained_models/')
+    model.save(MODEL_NAME+'/')
 
 

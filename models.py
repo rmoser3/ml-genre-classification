@@ -51,57 +51,31 @@ def cnn_VV(input_shape):
     return model
 
 def cnn_DS(input_shape):
-
+    """
+    TODO: try it without padding in the conv layers
+    """
     model = keras.Sequential()
-
-    # X = Conv2D(128, kernel_size=(3, 3), strides=(1, 1))(X)
-    # X = BatchNormalization(axis=-1)(X)
-    # X = Activation('relu')(X)
-    # X = MaxPooling2D((2, 2))(X)
 
     model.add(keras.layers.Conv2D(128, (3, 3), strides=(1, 1), activation='relu', input_shape=input_shape))
     model.add(keras.layers.MaxPool2D((2, 2), strides=(2, 2), padding='same'))
     model.add(keras.layers.BatchNormalization())
 
-    # X = Conv2D(64, kernel_size=(3, 3), strides=(1, 1))(X)
-    # X = BatchNormalization(axis=-1)(X)
-    # X = Activation('relu')(X)
-    # X = MaxPooling2D((2, 2))(X)
-
     model.add(keras.layers.Conv2D(64, (3, 3), strides=(1, 1), activation='relu', input_shape=input_shape, padding="same"))
     model.add(keras.layers.MaxPool2D((2, 2), strides=(2, 2), padding='same'))
     model.add(keras.layers.BatchNormalization())
-
-    # X = Conv2D(32, kernel_size=(3, 3), strides=(1, 1)))(X)
-    # X = BatchNormalization(axis=3)(X)
-    # X = Activation('relu')(X)
-    # X = MaxPooling2D((2, 2))(X)
 
     model.add(keras.layers.Conv2D(32, (3, 3), strides=(1, 1), activation='relu', input_shape=input_shape))
     model.add(keras.layers.MaxPool2D((2, 2), strides=(2, 2), padding='same'))
     model.add(keras.layers.BatchNormalization())
 
-    # X = Conv2D(16, kernel_size=(3, 3), strides=(1, 1))(X)
-    # X = BatchNormalization(axis=3)(X)
-    # X = Activation('relu')(X)
-    # X = MaxPooling2D((2, 2))(X)
-
     model.add(keras.layers.Conv2D(16, (3, 3), strides=(1, 1), activation='relu', input_shape=input_shape, padding="same"))
     model.add(keras.layers.MaxPool2D((2, 2), strides=(2, 2), padding='same'))
     model.add(keras.layers.BatchNormalization())
-
-    # X = Conv2D(8, kernel_size=(3, 3), strides=(1, 1))(X_input)
-    # X = BatchNormalization(axis=3)(X)
-    # X = Activation('relu')(X)
-    # X = MaxPooling2D((2, 2))(X)
 
     model.add(keras.layers.Conv2D(8, (3, 3), strides=(1,1), activation='relu', input_shape=input_shape, padding="same"))
     model.add(keras.layers.MaxPool2D((2, 2), strides=(2, 2), padding='same'))
     model.add(keras.layers.BatchNormalization())
 
-    # X = Flatten()(X)
-    # X = Dropout(rate=0.3)
-    # X = Dense(classes, activation='softmax', name='fc' + str(classes))(X)
     model.add(keras.layers.Flatten())
     model.add(keras.layers.Dropout(0.3))
     model.add(keras.layers.Dense(10, activation='softmax'))
