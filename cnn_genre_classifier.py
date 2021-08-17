@@ -5,6 +5,7 @@ import tensorflow.keras as keras
 import matplotlib.pyplot as plt
 import models
 import random
+import csv_utility
 
 DATA_PATH = "data.json"
 MODEL_NAME = "somename"
@@ -12,8 +13,7 @@ LEARNING_RATE = 0.00015
 BATCH_SIZE = 32
 EPOCHS = 50
 
-TOTAL_PREDICTIONS = 0
-CORRECT_PREDICTIONS = 0
+ACCURACY = 0
 
 def load_data(data_path):
     """
@@ -159,6 +159,9 @@ def train_model():
     # evaluate the CNN on the testset
     test_error, test_accuracy = model.evaluate(X_test, y_test, verbose=2)
     print("Accuracy on test set is: {}".format(test_accuracy))
+    ACCURACY = test_accuracy
+
+    csv_utility.run()
 
     # make predictions on a sample
     X = X_test[100]
