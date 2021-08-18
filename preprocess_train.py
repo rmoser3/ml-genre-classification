@@ -1,5 +1,5 @@
 """
-generates a new dataset guided by the parameters in preprocess.py, then
+generates a new dataset and trains a new model
 """
 
 from preprocess import run

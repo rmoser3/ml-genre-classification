@@ -134,6 +134,7 @@ def train_model():
     else:
         print("Error: model not found. The model name string should correspond" \
               "with one of the model names in models.py.")
+        return 
 
     # compile the network
     optimizer = keras.optimizers.Adam(learning_rate=LEARNING_RATE)
