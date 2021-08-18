@@ -2,7 +2,7 @@ import tensorflow.keras as keras
 
 # The model constructed by The Sound of AI
     # https://www.youtube.com/watch?v=dOG-HxpbMSw
-def cnn_VV(input_shape):
+def cnn_V1(input_shape):
     """Generates CNN model
         :param input_shape (tuple): Shape of input set
         :return model: CNN model
@@ -50,7 +50,7 @@ def cnn_VV(input_shape):
 
     return model
 
-def cnn_DS(input_shape):
+def cnn_V2(input_shape):
     """
     TODO: try it without padding in the conv layers
     """
@@ -77,7 +77,9 @@ def cnn_DS(input_shape):
     model.add(keras.layers.BatchNormalization())
 
     model.add(keras.layers.Flatten())
+    model.add(keras.layers.Dense(64, activation='relu'))
     model.add(keras.layers.Dropout(0.3))
+
     model.add(keras.layers.Dense(10, activation='softmax'))
 
     return model

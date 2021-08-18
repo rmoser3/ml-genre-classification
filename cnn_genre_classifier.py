@@ -6,14 +6,8 @@ import matplotlib.pyplot as plt
 import models
 import random
 import csv_utility
-
-DATA_PATH = "data.json"
-MODEL_NAME = "somename"
-LEARNING_RATE = 0.00015
-BATCH_SIZE = 32
-EPOCHS = 50
-
-ACCURACY = 0
+from settings import JSON_PATH as DATA_PATH, MODEL_NAME, LEARNING_RATE, \
+    BATCH_SIZE, EPOCHS
 
 def load_data(data_path):
     """
@@ -103,20 +97,15 @@ def predict(model, X, y):
     # extract index with max value
     predicted_index = np.argmax(prediction, axis=1)
     print("Expected index: {}, Predicted index: {}".format(y, predicted_index))
-    global TOTAL_PREDICTIONS
-    global CORRECT_PREDICTIONS
-    TOTAL_PREDICTIONS = TOTAL_PREDICTIONS + 1
-    if(y == predicted_index):
-        CORRECT_PREDICTIONS = CORRECT_PREDICTIONS + 1
 
-def load_model():
+def load_model(model_path):
     """
     Load a saved model and test it on the test set
     """
 
     X_train, X_validation, X_test, y_train, y_validation, y_test = prepare_datasets(0.25, 0.2)
 
-    model = keras.models.load_model("trained_models/")
+    model = keras.models.load_model(model_path)
     optimizer = keras.optimizers.Adam(learning_rate=LEARNING_RATE)
     model.compile(optimizer=optimizer,
                   loss="sparse_categorical_crossentropy",
@@ -137,7 +126,14 @@ def train_model():
     # build the CNN net
     # X_train is a 4d array. see prepare_datasets
     input_shape = (X_train.shape[1], X_train.shape[2], X_train.shape[3])
-    model = models.cnn_DS(input_shape=input_shape)
+
+    if "cnn_V1" in MODEL_NAME:
+        model = models.cnn_V1(input_shape=input_shape)
+    elif "cnn_V2" in MODEL_NAME:
+        model = models.cnn_V2(input_shape=input_shape)
+    else:
+        print("Error: model not found. The model name string should correspond" \
+              "with one of the model names in models.py.")
 
     # compile the network
     optimizer = keras.optimizers.Adam(learning_rate=LEARNING_RATE)
@@ -159,9 +155,8 @@ def train_model():
     # evaluate the CNN on the testset
     test_error, test_accuracy = model.evaluate(X_test, y_test, verbose=2)
     print("Accuracy on test set is: {}".format(test_accuracy))
-    ACCURACY = test_accuracy
 
-    csv_utility.run()
+    csv_utility.run(test_accuracy)
 
     # make predictions on a sample
     X = X_test[100]

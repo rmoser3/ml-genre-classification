@@ -2,17 +2,8 @@ import os
 import librosa
 import math
 import json
-
-
-DATASET_PATH = "/Users/ryan.moser/Downloads/genres"
-JSON_PATH = "data.json"
-
-SAMPLE_RATE = 22050  # number of samples taken per second
-DURATION = 30 # measured in seconds
-N_MFCC = 13
-N_FFT = 2048
-HOP_LENGTH = 128
-NUM_SEGMENTS = 50
+from settings import DATASET_PATH, JSON_PATH, SAMPLE_RATE, \
+    DURATION, N_MFCC, N_FFT, HOP_LENGTH, NUM_SEGMENTS
 
 SAMPLES_PER_TRACK = SAMPLE_RATE * DURATION
 NUM_SAMPLES_PER_SEGMENT = int(SAMPLES_PER_TRACK / NUM_SEGMENTS)

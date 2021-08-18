@@ -4,16 +4,16 @@ import cnn_genre_classifier as cnn
 import preprocess as pp
 from pathlib import Path
 
-def run():
+def run(accuracy):
     # field names
     fields = ['MODEL_NAME', 'N_MFCC', 'N_FFT', 'HOP_LENGTH', 'NUM_SEGMENTS', 'LEARNING_RATE', 'BATCH_SIZE', 'EPOCHS', 'ACCURACY']
 
     # data rows of csv file
-    row = [[cnn.MODEL_NAME, str(pp.N_MFCC), str(pp.N_FFT), str(pp.HOP_LENGTH), str(pp.NUM_SEGMENTS), str(cnn.LEARNING_RATE), str(cnn.BATCH_SIZE), str(cnn.EPOCHS), str(cnn.ACCURACY)]]
+    row = [[cnn.MODEL_NAME, str(pp.N_MFCC), str(pp.N_FFT), str(pp.HOP_LENGTH), str(pp.NUM_SEGMENTS), str(cnn.LEARNING_RATE), str(cnn.BATCH_SIZE), str(cnn.EPOCHS), str(accuracy)]]
 
 
     # name of csv file
-    filename = cnn.MODEL_NAME + ".csv"
+    filename = "records.csv"
 
     # writing to an existing csv file
     if(is_file()):
