@@ -32,7 +32,7 @@ def run(accuracy):
 
 
 def is_file():
-    file = Path(cnn.MODEL_NAME + ".csv")
+    file = Path("records.csv")
     if(os.path.isfile(file)):
         return True
     else:

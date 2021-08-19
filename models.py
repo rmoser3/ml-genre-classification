@@ -77,7 +77,7 @@ def cnn_V2(input_shape):
     model.add(keras.layers.BatchNormalization())
 
     model.add(keras.layers.Flatten())
-    model.add(keras.layers.Dense(64, activation='relu'))
+    # model.add(keras.layers.Dense(64, activation='relu'))
     model.add(keras.layers.Dropout(0.3))
 
     model.add(keras.layers.Dense(10, activation='softmax'))
