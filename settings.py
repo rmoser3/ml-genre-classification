@@ -12,5 +12,5 @@ NUM_SEGMENTS = 30 # number of segments per track
 MODEL_NAME = "cnn_V2" # for the csv file containing the metrics
 LEARNING_RATE = 0.00015 # how much to change the model in response to error
 BATCH_SIZE = 32 # how many training samples are used per epoch
-EPOCHS = 65 # for each epoch, the model trains on some number of training samples
+EPOCHS = 85 # for each epoch, the model trains on some number of training samples
                 # and is tested on the validation set

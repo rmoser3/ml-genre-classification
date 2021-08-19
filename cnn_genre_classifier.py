@@ -114,6 +114,8 @@ def load_model(model_path):
 
     test_error, test_accuracy = model.evaluate(X_test, y_test, verbose=2)
     print("Accuracy on test set is: {}".format(test_accuracy))
+
+def train_model():
     """
     Train a new model and save it
     TODO: Get probability distribution on test set to pass to score to vote function
@@ -163,7 +165,5 @@ def load_model(model_path):
     predict(model, X, y)
 
     model.save(MODEL_NAME+'/')
-
-def train_model():
 
 
